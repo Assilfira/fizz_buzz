@@ -16,7 +16,10 @@ class FizzBuzzStatsControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'result' => null,
+                'result' => [
+                    'parameters' => [],
+                    'hits' => 0,
+                ],
             ]);
     }
 

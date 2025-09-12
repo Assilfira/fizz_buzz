@@ -14,19 +14,25 @@ class UpsertFizzBuzzRequestStat
      */
     public function handle(array $attributes): void
     {
-        FizzBuzzRequestStat::upsert(
-            [
-                [
-                    'int1' => $attributes['int1'],
-                    'int2' => $attributes['int2'],
-                    'limit' => $attributes['limit'],
-                    'str1' => $attributes['str1'],
-                    'str2' => $attributes['str2'],
-                    'hits' => 1,
-                ],
-            ],
-            ['int1', 'int2', 'limit', 'str1', 'str2'],
-            ['hits' => DB::raw('hits + 1')]
-        );
+        $existingRecord = FizzBuzzRequestStat::where([
+            'int1' => $attributes['int1'],
+            'int2' => $attributes['int2'],
+            'limit' => $attributes['limit'],
+            'str1' => $attributes['str1'],
+            'str2' => $attributes['str2'],
+        ])->first();
+
+        if ($existingRecord) {
+            $existingRecord->increment('hits');
+        } else {
+            FizzBuzzRequestStat::create([
+                'int1' => $attributes['int1'],
+                'int2' => $attributes['int2'],
+                'limit' => $attributes['limit'],
+                'str1' => $attributes['str1'],
+                'str2' => $attributes['str2'],
+                'hits' => 1,
+            ]);
+        }
     }
 }

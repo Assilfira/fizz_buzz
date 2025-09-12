@@ -18,7 +18,10 @@ class FizzBuzzStatsService implements FizzBuzzStatsServiceInterface
             ->first();
 
         if (! $mostUsedRequest) {
-            return null;
+            return [
+                'parameters' => [],
+                'hits' => 0,
+            ];
         }
 
         return [
