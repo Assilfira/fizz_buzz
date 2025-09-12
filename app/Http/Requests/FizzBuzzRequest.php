@@ -35,7 +35,7 @@ class FizzBuzzRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'int1.different' => 'int1 and int2 must be different to avoid ambiguity.',
+            'int1.different' => 'int1 and int2 must be different.',
             'int1.lte' => 'int1 must be less than or equal to limit.',
             'int2.lte' => 'int2 must be less than or equal to limit.',
         ];
