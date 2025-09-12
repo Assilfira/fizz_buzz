@@ -1,7 +1,6 @@
 <?php
 
+use App\Http\Controllers\FizzBuzzController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return response()->json();
-});
+Route::get('/fizzbuzz', [FizzBuzzController::class, 'index']);
