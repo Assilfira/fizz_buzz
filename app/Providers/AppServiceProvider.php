@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\SequenceServiceInterface;
 use App\Services\SequenceService;
-use App\Services\SequenceServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class FizzBuzzRequest extends FormRequest
@@ -24,11 +24,11 @@ class FizzBuzzRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'int1'  => ['required','integer','different:int2','min:1','max:5000','lte:limit'],
-            'int2'  => ['required','integer','min:1','max:5000','lte:limit'],
-            'limit' => ['required','integer','min:1','max:5000'],
-            'str1'  => ['required','string','max:15'],
-            'str2'  => ['required','string','max:15'],
+            'int1' => ['required', 'integer', 'different:int2', 'min:1', 'max:5000', 'lte:limit'],
+            'int2' => ['required', 'integer', 'min:1', 'max:5000', 'lte:limit'],
+            'limit' => ['required', 'integer', 'min:1', 'max:5000'],
+            'str1' => ['required', 'string', 'max:15'],
+            'str2' => ['required', 'string', 'max:15'],
         ];
     }
 
@@ -41,16 +41,12 @@ class FizzBuzzRequest extends FormRequest
         ];
     }
 
-    /**
-     * @param Validator $validator
-     * @return void
-     */
     protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(
             response()->json([
                 'message' => 'The given data was invalid.',
-                'errors'  => $validator->errors(),
+                'errors' => $validator->errors(),
             ], 400)
         );
     }
