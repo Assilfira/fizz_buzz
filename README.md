@@ -99,6 +99,33 @@ Returns the most frequently used parameter combination.
 }
 ```
 
+## API Documentation (Swagger)
+
+The API includes comprehensive Swagger/OpenAPI documentation that provides an interactive interface for exploring and testing the endpoints.
+
+### Accessing the Documentation
+
+- **Swagger UI**: `http://localhost:8000/api/spec` - Interactive web interface
+- **OpenAPI JSON**: `http://localhost:8000/api/spec-json` - Raw JSON specification
+
+### Features
+
+- **Interactive Testing**: Test API endpoints directly from the browser
+- **Request/Response Examples**: See example requests and responses for each endpoint
+- **Parameter Validation**: Understand required parameters and their constraints
+- **Schema Documentation**: View detailed data models and validation rules
+
+### Setup for Development
+
+If you're setting up the project from scratch, the Swagger documentation will be automatically available.
+After any documentation update, you just need to run:
+
+```bash
+docker compose -f compose.dev.yaml exec workspace php artisan l5-swagger:generate
+```
+
+The documentation is automatically updated when you run the generate command, so you can refresh the Swagger UI to see the latest changes.
+
 ## How It Works
 
 The Fizz-Buzz algorithm works as follows:

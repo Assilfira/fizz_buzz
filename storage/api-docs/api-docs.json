@@ -1,0 +1,212 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "FizzBuzz API",
+        "description": "API for generating FizzBuzz sequences with customizable parameters",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/fizzbuzz": {
+            "get": {
+                "tags": [
+                    "FizzBuzz"
+                ],
+                "summary": "Generate FizzBuzz sequence",
+                "description": "Generates a FizzBuzz sequence based on the provided parameters and tracks usage statistics",
+                "operationId": "a5f4d6ed003ebc6390c1b59becba2c8b",
+                "parameters": [
+                    {
+                        "name": "int1",
+                        "in": "query",
+                        "description": "First integer for FizzBuzz logic (must be different from int2)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 5000,
+                            "minimum": 1
+                        },
+                        "example": 3
+                    },
+                    {
+                        "name": "int2",
+                        "in": "query",
+                        "description": "Second integer for FizzBuzz logic (must be different from int1)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 5000,
+                            "minimum": 1
+                        },
+                        "example": 5
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Upper limit for the sequence generation",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 5000,
+                            "minimum": 1
+                        },
+                        "example": 100
+                    },
+                    {
+                        "name": "str1",
+                        "in": "query",
+                        "description": "String to replace multiples of int1",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 15
+                        },
+                        "example": "fizz"
+                    },
+                    {
+                        "name": "str2",
+                        "in": "query",
+                        "description": "String to replace multiples of int2",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 15
+                        },
+                        "example": "buzz"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response with FizzBuzz sequence",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "result": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "1",
+                                                "2",
+                                                "fizz",
+                                                "4",
+                                                "buzz",
+                                                "fizz",
+                                                "7",
+                                                "8",
+                                                "fizz",
+                                                "buzz",
+                                                "11",
+                                                "fizz",
+                                                "13",
+                                                "14",
+                                                "fizzbuzz"
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fizzbuzz/stats": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Get FizzBuzz statistics",
+                "description": "Retrieves the most frequently used FizzBuzz request parameters",
+                "operationId": "c8934513fa3742668c85e909f8a6b884",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with statistics",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "result": {
+                                            "properties": {
+                                                "int1": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "int2": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "str1": {
+                                                    "type": "string",
+                                                    "example": "fizz"
+                                                },
+                                                "str2": {
+                                                    "type": "string",
+                                                    "example": "buzz"
+                                                },
+                                                "hits": {
+                                                    "type": "integer",
+                                                    "example": 42
+                                                }
+                                            },
+                                            "type": "object",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "FizzBuzz",
+            "description": "FizzBuzz"
+        },
+        {
+            "name": "Statistics",
+            "description": "Statistics"
+        }
+    ]
+}
